@@ -2,12 +2,7 @@
 
 import { useAccount, useBalance, useChainId } from "wagmi";
 
-import {
-  Card,
-  CardContent,
-  CardHeader,
-  CardTitle,
-} from "../ui/card";
+import { Card, CardContent, CardHeader, CardTitle } from "../ui/card";
 
 export function WalletCard() {
   const { address, isConnected } = useAccount();
@@ -22,9 +17,7 @@ export function WalletCard() {
     return (
       <Card>
         <CardHeader>
-          <CardTitle>
-            Wallet
-          </CardTitle>
+          <CardTitle>Wallet</CardTitle>
         </CardHeader>
 
         <CardContent>
@@ -39,37 +32,36 @@ export function WalletCard() {
   return (
     <Card>
       <CardHeader>
-        <CardTitle>
-          Wallet Overview
-        </CardTitle>
+        <CardTitle>Wallet Overview</CardTitle>
       </CardHeader>
 
-      <CardContent className="space-y-4">
+      <CardContent className="space-y-6">
         <div>
-          <p className="text-sm text-muted-foreground">
-            Address
-          </p>
+          <p className="text-sm text-muted-foreground">Address</p>
 
-          <p className="font-mono break-all text-sm">
-            {address}
-          </p>
+          <p className="font-mono text-sm break-all">{address}</p>
         </div>
 
-        <div>
-          <p className="text-sm text-muted-foreground">
-            Network
-          </p>
+        <div className="grid grid-cols-2 gap-4">
+          <div className="rounded-lg border p-4">
+            <p className="text-sm text-muted-foreground">Network</p>
 
-          <p>{chainId}</p>
+            <p className="font-semibold">Sepolia</p>
+          </div>
+
+          <div className="rounded-lg border p-4">
+            <p className="text-sm text-muted-foreground">Chain ID</p>
+
+            <p className="font-semibold">{chainId}</p>
+          </div>
         </div>
 
-        <div>
-          <p className="text-sm text-muted-foreground">
-            Balance
-          </p>
+        <div className="rounded-lg border p-4">
+          <p className="text-sm text-muted-foreground">ETH Balance</p>
 
-          <p>
-            {balance?.formatted} {balance?.symbol}
+          <p className="text-2xl font-bold">
+            {balance?.formatted ? Number(balance.formatted).toFixed(4) : "0"}{" "}
+            {balance?.symbol}
           </p>
         </div>
       </CardContent>
